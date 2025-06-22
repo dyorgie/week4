@@ -16,8 +16,18 @@ class RoleFactory extends Factory
      */
     public function definition(): array
     {
+        $roleMap = [
+            'A' => 'Administrator - full access',
+            'C' => 'Contributor - can create content',
+            'S' => 'Subscriber - read-only access',
+        ];
+
+
+        $role = $this->faker->randomElement(array_keys($roleMap));
+
         return [
-            //
+            'role_name' => $role,
+            'description' => $roleMap[$role],
         ];
     }
 }

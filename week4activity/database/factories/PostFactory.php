@@ -21,11 +21,14 @@ class PostFactory extends Factory
         $status = fake()->randomElement(['D', 'P', 'I']);
         return [
             'title' => $title,
+            'description' => fake()->sentence(), // ✅ Add this line
             'content' => fake()->paragraph(),
             'slug' => Str::slug($title),
-            'publication_date' => $status == 'Published' ? now() : null,
+            'publication_date' => $status == 'P' ? now() : null,
             'status' => $status,
-            'featured_image_url' => fake()->imageUrl(640, 480, 'animals', true)
+            'featured_image_url' => fake()->imageUrl(640, 480, 'animals', true),
+            'last_modified_date' => now(), // ✅ Optional but safe to include
+            'views_count' => 0, // ✅ if your table has this default
         ];
     }
 }

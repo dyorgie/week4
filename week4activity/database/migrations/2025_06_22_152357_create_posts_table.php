@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('description');
             $table->text('content');
-            $table->string('slug');
-            $table->timestamp('publication_date');
-            $table->timestamp('last_modified_date');
-            $table->string('status')->max(1);
-            $table->text('featured_image_url');
+            $table->string('slug')->unique();
+            $table->timestamp('publication_date')->nullable();
+            $table->timestamp('last_modified_date')->nullable();
+            $table->string('status');
+            $table->text('featured_image_url')->nullable();
             $table->integer('views_count')->default(0);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
