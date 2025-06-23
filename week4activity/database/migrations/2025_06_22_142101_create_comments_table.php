@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('reviewer_name');
             $table->string('reviewer_email');
             $table->boolean('is_hidden')->default(false);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

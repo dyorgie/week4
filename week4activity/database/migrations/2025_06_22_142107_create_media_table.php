@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('file_size')->default(0);
             $table->text('url');
             $table->timestamp('upload_date');
-            $table->string('descriptipn')->nullable();
+            $table->string('description')->nullable();
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
